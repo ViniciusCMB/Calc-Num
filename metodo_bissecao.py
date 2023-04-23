@@ -16,7 +16,6 @@ def calcTol(i, j):
 
 
 def calcBiss(a, b, Tol):
-    function = "x³ - 9x + 3"
     epsilon = 0
     x = 0
     iteration = 0
@@ -60,7 +59,7 @@ def calcBiss(a, b, Tol):
     plt.show()
     return None
 
-
+function = "x³ - 9x + 3"
 print(f'Cálculo Método da Bisseção para a função "{function}"')
 limA = float(input("Indique o primeiro limitante do intervalo: "))
 limB = float(input("Indique o segundo limitante do intervalo: "))
