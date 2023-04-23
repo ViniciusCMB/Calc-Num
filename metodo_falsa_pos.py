@@ -54,7 +54,7 @@ def calcFals(a, b, Tol):
         iteration += 1
 
     print(
-        f'A solução mais próxima para {function} = 0, em [{a_zero:.4f}, {b_zero:.4f}] é x={x:.4f}')
+        f'A solução mais próxima para {function} = 0, em [{a_zero:.4f}, {b_zero:.4f}] e tolerância de {Tol} é x={x:.4f}')
 
     plt.grid()
     plt.title(f'{function}')
