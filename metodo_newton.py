@@ -1,15 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import diff, Symbol
 
 
 def f(x, f):
     return eval(f, {"x": x})
-
-
-def dxf(f):
-    x = Symbol('x')
-    return str(diff(eval(f), x))
 
 
 def calcTol(i, j):
@@ -22,7 +16,7 @@ def calcNR(a, b, Tol):
     iteration = 0
     xf = np.linspace(a-1, b+1, 100)
     yf = f(xf, function)
-
+    dxf_function = input('Insira a derivada da função desejada: ')
     a_zero = a
     b_zero = b
 
@@ -32,7 +26,7 @@ def calcNR(a, b, Tol):
         xold = a
 
         f_A = f(xold, function)
-        dxf_A = f(xold, dxf(function))
+        dxf_A = f(xold, dxf_function)
 
         x = xold - (f_A/dxf_A)
 
