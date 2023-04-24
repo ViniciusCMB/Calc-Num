@@ -42,7 +42,7 @@ def calcBiss(a, b, Tol):
             break
         eps = calcTol(a, b)
         print(
-            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon} // {function} = {f(x, function):.4f} para x = {x:.4f}')
+            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {eps} // {function} = {f(x, function):.4f} para x = {x:.4f}')
         iteration += 1
 
     print(
