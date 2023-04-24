@@ -1,19 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+# Função que calcula Xn
 def calcXn(k, l):
     return ((k+l)/(2))
 
-
+# Função que calcula f(x)
 def f(x, f):
     return eval(f, {"x": x})
 
-
+# Função que calcula a tolerância
 def calcTol(i, j):
     return (abs(j - i))
 
-
+# Função que calcula o método da Bisseção
 def calcBiss(a, b, Tol):
     epsilon = 0
     x = 0
@@ -48,6 +48,7 @@ def calcBiss(a, b, Tol):
     print(
         f'A solução mais próxima para {function} = 0, em [{a_zero:.4f}, {b_zero:.4f}] é x={x:.4f}')
 
+    # Exibição do gráfico
     plt.grid()
     plt.title(f'{function}')
     plt.scatter(a, f(a, function), c='blue')
@@ -67,3 +68,4 @@ limA = float(input('Indique o primeiro limitante do intervalo: '))
 limB = float(input('Indique o segundo limitante do intervalo: '))
 tol = float(input('Indique a tolerância: '))
 calcBiss(limA, limB, tol)
+print('===============')

@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+# Função que calcula f(x)
 def f(x, f):
     return eval(f, {"x": x})
 
-
+# Função que calcula a tolerância
 def calcTol(i, j):
     return (abs(j - i))
 
-
+# Função que calcula o método da Secante
 def calcSec(a, b, Tol):
     epsilon = 0
     xold2 = 0.0
@@ -42,6 +42,8 @@ def calcSec(a, b, Tol):
 
     print(
         f'A solução mais próxima para {function} = 0, em [{a_zero:.4f}, {b_zero:.4f}] é x={x:.4f}')
+    
+    # Exibição do gráfico
     plt.grid()
     plt.title(f'{function}')
     plt.scatter(a, f(a, function), c='blue')
@@ -61,3 +63,4 @@ limA = float(input('Indique o primeiro limitante do intervalo: '))
 limB = float(input('Indique o segundo limitante do intervalo: '))
 tol = float(input('Indique a tolerância: '))
 calcSec(limA, limB, tol)
+print('===============')
