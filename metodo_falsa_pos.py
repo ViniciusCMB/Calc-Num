@@ -3,11 +3,11 @@ import numpy as np
 
 
 def calcXn(k, l):
-    return ((k*f(l)-l*f(k))/(f(l)-f(k)))
+    return ((k*f(l, function)-l*f(k, function))/(f(l, function)-f(k, function)))
 
 
-def f(x):
-    return eval(function, {"x": x})
+def f(x, f):
+    return eval(f, {"x": x})
 
 
 def calcTol(i):
@@ -19,22 +19,21 @@ def calcFals(a, b, Tol):
     x = 0
     iteration = 0
     xf = np.linspace(a-1, b+1, 100)
-    yf = f(xf)
+    yf = f(xf, function)
 
     a_zero = a
     b_zero = b
 
     x = calcXn(a, b)
-    f_x = f(x)
 
-    epsilon = calcTol(f(x))
+    epsilon = calcTol(f(x, function))
 
     while (epsilon > Tol):
         x = calcXn(a, b)
 
-        f_A = f(a)
-        f_B = f(b)
-        f_x = f(x)
+        f_A = f(a, function)
+        f_B = f(b, function)
+        f_x = f(x, function)
 
         if ((f_A)*(f_x) < 0):
             b = x
@@ -43,9 +42,9 @@ def calcFals(a, b, Tol):
         else:
             print("Error")
             break
-        epsilon = calcTol(f(x))
+        epsilon = calcTol(f(x, function))
         print(
-            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon:.4f} // {function} = {f(x):.4f} para x = {x:.4f}')
+            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon:.4f} // {function} = {f(x, function):.4f} para x = {x:.4f}')
         iteration += 1
 
     print(
@@ -53,10 +52,10 @@ def calcFals(a, b, Tol):
 
     plt.grid()
     plt.title(f'{function}')
-    plt.scatter(a, f(a), c='blue')
-    plt.scatter(b, f(b), c='blue')
-    plt.scatter(a_zero, f(a_zero), c='red')
-    plt.scatter(b_zero, f(b_zero), c='red')
+    plt.scatter(a, f(a, function), c='blue')
+    plt.scatter(b, f(b, function), c='blue')
+    plt.scatter(a_zero, f(a_zero, function), c='red')
+    plt.scatter(b_zero, f(b_zero, function), c='red')
     plt.plot(xf, yf, c='purple')
     plt.show()
     return None

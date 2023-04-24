@@ -6,8 +6,8 @@ def calcXn(k, l):
     return ((k+l)/(2))
 
 
-def f(x):
-    return eval(function, {"x": x})
+def f(x, f):
+    return eval(f, {"x": x})
 
 
 def calcTol(i, j):
@@ -19,7 +19,7 @@ def calcBiss(a, b, Tol):
     x = 0
     iteration = 0
     xf = np.linspace(a-1, b+1, 100)
-    yf = f(xf)
+    yf = f(xf, function)
 
     a_zero = a
     b_zero = b
@@ -29,9 +29,9 @@ def calcBiss(a, b, Tol):
     while (epsilon > Tol):
         x = calcXn(a, b)
 
-        f_A = f(a)
-        f_B = f(b)
-        f_x = f(x)
+        f_A = f(a, function)
+        f_B = f(b, function)
+        f_x = f(x, function)
 
         if ((f_A)*(f_x) < 0):
             b = x
@@ -42,7 +42,7 @@ def calcBiss(a, b, Tol):
             break
         epsilon = calcTol(a, b)
         print(
-            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon} // {function} = {f(x):.4f} para x = {x:.4f}')
+            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon} // {function} = {f(x, function):.4f} para x = {x:.4f}')
         iteration += 1
 
     print(
@@ -50,10 +50,10 @@ def calcBiss(a, b, Tol):
 
     plt.grid()
     plt.title(f'{function}')
-    plt.scatter(a, f(a), c='blue')
-    plt.scatter(b, f(b), c='blue')
-    plt.scatter(a_zero, f(a_zero), c='red')
-    plt.scatter(b_zero, f(b_zero), c='red')
+    plt.scatter(a, f(a, function), c='blue')
+    plt.scatter(b, f(b, function), c='blue')
+    plt.scatter(a_zero, f(a_zero, function), c='red')
+    plt.scatter(b_zero, f(b_zero, function), c='red')
     plt.plot(xf, yf, c='purple')
     plt.show()
     return None
