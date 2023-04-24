@@ -11,18 +11,18 @@ def calcTol(i, j):
 
 # Função que calcula o método de Newton-Raphson
 def calcNR(a, b, Tol):
-    epsilon = 0
+    eps = 0
     xold = 0.0
     iteration = 0
-    xf = np.linspace(a-1, b+1, 100)
-    yf = f(xf, function)
+    x_f = np.linspace(a-1, b+1, 100)
+    y_f = f(x_f, function)
     dxf_function = input('Insira a derivada da função desejada: ')
     a_zero = a
     b_zero = b
 
-    epsilon = calcTol(a, b)
+    eps = calcTol(a, b)
 
-    while (epsilon > Tol):
+    while (eps > Tol):
         xold = a
 
         f_A = f(xold, function)
@@ -33,22 +33,22 @@ def calcNR(a, b, Tol):
         b = a
         a = x
 
-        epsilon = calcTol(a, b)
+        eps = calcTol(a, b)
         print(
             f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon:.4f} // {function} = {f(x, function):.4f} para x = {x:.4f}')
         iteration += 1
 
     print(
         f'A solução mais próxima para {function} = 0, em [{a_zero:.4f}, {b_zero:.4f}] é x={x:.4f}')
-    
+
     # Exibição do gráfico
     plt.grid()
     plt.title(f'{function}')
-    plt.scatter(a, f(a, function), c='blue')
-    plt.scatter(b, f(b, function), c='blue')
-    plt.scatter(a_zero, f(a_zero, function), c='red')
-    plt.scatter(b_zero, f(b_zero, function), c='red')
-    plt.plot(xf, yf, c='purple')
+    plt.scatter(a, f(a, function), c='red')
+    plt.scatter(b, f(b, function), c='red')
+    plt.scatter(a_zero, f(a_zero, function), c='blue')
+    plt.scatter(b_zero, f(b_zero, function), c='blue')
+    plt.plot(x_f, y_f, c='purple')
     plt.show()
     return None
 

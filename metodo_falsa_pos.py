@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Função que calcula Xn
-def calcXn(k, l):
-    return ((k*f(l, function)-l*f(k, function))/(f(l, function)-f(k, function)))
+def calcXn(a, b):
+    return ((a*f(b, function)-b*f(a, function))/(f(b, function)-f(a, function)))
 
 # Função que calcula f(x)
 def f(x, f):
@@ -15,20 +15,20 @@ def calcTol(i):
 
 # Função que calcula o método da Falsa Posição
 def calcFals(a, b, Tol):
-    epsilon = 0
+    eps = 0
     x = 0
     iteration = 0
-    xf = np.linspace(a-1, b+1, 100)
-    yf = f(xf, function)
+    x_f = np.linspace(a-1, b+1, 100)
+    y_f = f(x_f, function)
 
     a_zero = a
     b_zero = b
 
     x = calcXn(a, b)
 
-    epsilon = calcTol(f(x, function))
+    eps = calcTol(f(x, function))
 
-    while (epsilon > Tol):
+    while (eps > Tol):
         x = calcXn(a, b)
 
         f_A = f(a, function)
@@ -42,7 +42,7 @@ def calcFals(a, b, Tol):
         else:
             print("Error")
             break
-        epsilon = calcTol(f(x, function))
+        eps = calcTol(f(x, function))
         print(
             f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon:.4f} // {function} = {f(x, function):.4f} para x = {x:.4f}')
         iteration += 1
@@ -53,11 +53,11 @@ def calcFals(a, b, Tol):
     # Exibição do gráfico
     plt.grid()
     plt.title(f'{function}')
-    plt.scatter(a, f(a, function), c='blue')
-    plt.scatter(b, f(b, function), c='blue')
-    plt.scatter(a_zero, f(a_zero, function), c='red')
-    plt.scatter(b_zero, f(b_zero, function), c='red')
-    plt.plot(xf, yf, c='purple')
+    plt.scatter(a, f(a, function), c='red')
+    plt.scatter(b, f(b, function), c='red')
+    plt.scatter(a_zero, f(a_zero, function), c='blue')
+    plt.scatter(b_zero, f(b_zero, function), c='blue')
+    plt.plot(x_f, y_f, c='purple')
     plt.show()
     return None
 
