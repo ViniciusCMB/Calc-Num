@@ -8,7 +8,7 @@ def calcXn(k, l):
 
 
 def f(x):
-    return ((x**3) - (9*(x)) + 5)
+    return eval(function, {"x": x})
 
 
 def calcTol(i):
@@ -20,17 +20,13 @@ def calcFals(a, b, Tol):
     x = 0
     iteration = 0
     xf = np.linspace(a-1, b+1, 100)
-    yf = xf**3 - 9*xf + 5
+    yf = f(xf)
 
     a_zero = a
     b_zero = b
 
     x = calcXn(a, b)
-    print(f(a))
-    print(f(b))
-    print(x)
     f_x = f(x)
-    print(f_x)
 
     epsilon = calcTol(f(x))
 
@@ -50,7 +46,7 @@ def calcFals(a, b, Tol):
             break
         epsilon = calcTol(f(x))
         print(
-            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon} // {function} = {f(x):.4f} para x = {x:.4f}')
+            f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {epsilon:.4f} // {function} = {f(x):.4f} para x = {x:.4f}')
         iteration += 1
 
     print(
@@ -66,9 +62,12 @@ def calcFals(a, b, Tol):
     plt.show()
     return None
 
-function = "x³ - 9x + 5"
-print(f'Cálculo Método da Falsa Posição para a função "{function}"')
-limA = float(input("Indique o primeiro limitante do intervalo: "))
-limB = float(input("Indique o segundo limitante do intervalo: "))
-tol = float(input("Indique a tolerância: "))
+
+print('===============')
+print('Cálculo Método da Falsa Posição')
+print('===============')
+function = input('Informe a função desejada: ')
+limA = float(input('Indique o primeiro limitante do intervalo: '))
+limB = float(input('Indique o segundo limitante do intervalo: '))
+tol = float(input('Indique a tolerância: '))
 calcFals(limA, limB, tol)

@@ -4,7 +4,7 @@ from scipy.optimize import fsolve
 
 
 def f(x):
-    return ((x**5) - (2*(x)) - 1)
+    return eval(function, {"x": x})
 
 
 def calcTol(i, j):
@@ -54,9 +54,11 @@ def calcSec(a, b, Tol):
     return None
 
 
-function = "x^5 - 2x - 1"
-print(f'Cálculo Método da Secante para a função "{function}"')
-limA = float(input("Indique o primeiro limitante do intervalo: "))
-limB = float(input("Indique o segundo limitante do intervalo: "))
-tol = float(input("Indique a tolerância: "))
+print('===============')
+print('Cálculo Método da Secante')
+print('===============')
+function = input('Informe a função desejada: ')
+limA = float(input('Indique o primeiro limitante do intervalo: '))
+limB = float(input('Indique o segundo limitante do intervalo: '))
+tol = float(input('Indique a tolerância: '))
 calcSec(limA, limB, tol)

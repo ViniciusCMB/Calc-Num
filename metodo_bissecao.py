@@ -8,7 +8,7 @@ def calcXn(k, l):
 
 
 def f(x):
-    return ((x**3) - (9*(x)) + 3)
+    return eval(function, {"x": x})
 
 
 def calcTol(i, j):
@@ -20,7 +20,7 @@ def calcBiss(a, b, Tol):
     x = 0
     iteration = 0
     xf = np.linspace(a-1, b+1, 100)
-    yf = xf**3 - 9*xf + 3
+    yf = f(xf)
 
     a_zero = a
     b_zero = b
@@ -59,9 +59,12 @@ def calcBiss(a, b, Tol):
     plt.show()
     return None
 
-function = "x³ - 9x + 3"
-print(f'Cálculo Método da Bisseção para a função "{function}"')
-limA = float(input("Indique o primeiro limitante do intervalo: "))
-limB = float(input("Indique o segundo limitante do intervalo: "))
-tol = float(input("Indique a tolerância: "))
+
+print('===============')
+print('Cálculo Método da Bisseção')
+print('===============')
+function = input('Informe a função desejada: ')
+limA = float(input('Indique o primeiro limitante do intervalo: '))
+limB = float(input('Indique o segundo limitante do intervalo: '))
+tol = float(input('Indique a tolerância: '))
 calcBiss(limA, limB, tol)
