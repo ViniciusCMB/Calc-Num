@@ -38,6 +38,8 @@ def calcSec(a, b, Tol):
         eps = calcTol(a, b)
         print(
             f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {eps:.4f} // {function} = {f(x, function):.4f} para x = {x:.4f}')
+        
+        plt.scatter(b, f(b, function), c='red') # Exibe todos pontos/valores de aproximação em vermelho 
         iteration += 1
 
     print(
@@ -46,8 +48,8 @@ def calcSec(a, b, Tol):
     # Exibição do gráfico
     plt.grid()
     plt.title(f'{function}')
-    plt.scatter(a, f(a, function), c='red')
-    plt.scatter(b, f(b, function), c='red')
+    plt.scatter(a, f(a, function), c='orange') # Exibe a raiz em laranja
+    # plt.scatter(b, f(b, function), c='red')
     plt.scatter(a_zero, f(a_zero, function), c='blue')
     plt.scatter(b_zero, f(b_zero, function), c='blue')
     plt.plot(x_f, y_f, c='purple')
