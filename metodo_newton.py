@@ -54,7 +54,7 @@ def calcNR(a, b, Tol):
     ax.scatter(a_zero, f(a_zero, function), c='blue', label='X0')
     ax.scatter(b_zero, f(b_zero, function), c='blue', label='X1')
     ax.scatter(a, f(a, function), c='orange', label='Raiz') # Exibe a raiz em laranja
-    ax.annotate(f'Raiz em em [{x:.4f}, {f(x, function):.4f}]', xy=(x, f(x, function)), xytext=(x, f(x, function)))
+    ax.annotate(f'Raiz em [{x:.4f}, {f(x, function):.4f}]', xy=(x, f(x, function)), xytext=(x, f(x, function)))
     ax.plot(x_f, y_f, c='purple', label='F(x)')
     y = np.zeros(100)
     ax.plot(x_f, y, c='gray', linestyle='dotted')
