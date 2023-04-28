@@ -43,7 +43,11 @@ def calcSec(a, b, Tol):
         print(
             f'ITERAÇÃO {iteration} - Intervalo de soluções: [{a:.4f}, {b:.4f}] // Tol = {eps:.4f} // {function} = {f(x, function):.4f} para x = {x:.4f}')
         
+<<<<<<< HEAD
         ax.scatter(b, f(b, function), c='red') # Exibe todos pontos/valores de aproximação em vermelho 
+=======
+        plt.scatter(b, f(b, function), c='red') # Exibe todos pontos/valores de aproximação em vermelho 
+>>>>>>> 17b2348932bab2007be0d05a51bcc2a681cca1dc
         iteration += 1
 
     ax.scatter(b, f(b, function), c='red', label=f'Xn')
@@ -51,6 +55,7 @@ def calcSec(a, b, Tol):
         f'A solução mais próxima para {function} = 0, em [{a_zero:.4f}, {b_zero:.4f}] é x={x:.4f}')
 
     # Exibição do gráfico
+<<<<<<< HEAD
     
     ax.grid()
     ax.set_title(f'{function}', loc='center', fontstyle='oblique', fontsize='medium')
@@ -64,6 +69,15 @@ def calcSec(a, b, Tol):
     ax.set_ylabel('F(x)')
     ax.set_xlabel('x')
     ax.legend()
+=======
+    plt.grid()
+    plt.title(f'{function}')
+    plt.scatter(a, f(a, function), c='orange') # Exibe a raiz em laranja
+    # plt.scatter(b, f(b, function), c='red')
+    plt.scatter(a_zero, f(a_zero, function), c='blue')
+    plt.scatter(b_zero, f(b_zero, function), c='blue')
+    plt.plot(x_f, y_f, c='purple')
+>>>>>>> 17b2348932bab2007be0d05a51bcc2a681cca1dc
     plt.show()
     return None
 
