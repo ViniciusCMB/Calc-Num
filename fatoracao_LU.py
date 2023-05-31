@@ -30,9 +30,9 @@ if dimensao == 1: # Executa a matriz teste
     matrizA = [[1, 2, 1], [2, 3, 3], [-3, -10, 2]]
 
 elif dimensao != 1: # Executa a matriz definida pelo usuário
-    matrizA = [] # Inicializa a matriz L
+    matrizA = [] # Inicializa a matriz A
     for i in range(dimensao):
-        linha = [] # Inicializa as linhas da matriz L
+        linha = [] # Inicializa as linhas da matriz A
         for j in range(dimensao):
             valor = float(input(f"Digite o valor para a posição A[{i+1}],[{j+1}]: ")) # Obtem os valores dos elementos nas posições i,j
             linha.append(valor) # Preenche as linhas com os valores digitados pelo usuário
