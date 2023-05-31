@@ -1,92 +1,62 @@
+#================================================================
+def decomp_lu(matriz):
+    L = [[0] * dimensao for _ in range(dimensao)] # Inicializa a matriz L 
+    U = [[0] * dimensao for _ in range(dimensao)] # Inicializa a matriz U 
 
-def LU(A):
-    n = len(A)
-    x = [0]*n
+    for i in range(dimensao):
+        for j in range(i, dimensao):
+            soma = sum(L[i][k] * U[k][j] for k in range(i)) # Calcula a soma dos produtos dos elementos de L e U
+            U[i][j] = matriz[i][j] - soma # Preenche a matriz U com os elementos da matriz original após a subtração
 
-    # Calculo dos pivos.
-    for k in list(range(1, n, 1)):
-        # Calculo dos multiplicadores.
-        for i in list(range(k+1, n+1, 1)):
-            m = A[i-1][k-1]/A[k-1][k-1]
-            A[i-1][k-1] = m
-            # Atualizar demais valores da linha
-            for j in list(range(k+1, n+1, 1)):
-                A[i-1][j-1] = A[i-1][j-1]-m*A[k-1][j-1]
+        for j in range(i, dimensao):
+            if i == j:
+                L[i][j] = 1 # Preenche a diagonal principal de L com 1
+            else:
+                soma = sum(L[j][k] * U[k][i] for k in range(i)) # Calcula a soma dos produtos dos elementos de L e U
+                L[j][i] = (matriz[j][i] - soma) / U[i][i] # Preenche a matriz L com os elementos da matriz original após a subtração e a divisão
 
-    return A
-
-# Resolve o sistema triangular inferior.
-
-
-def solveLowerTriangular(L, b):
-    n = len(b)
-    y = [0]*n
-
-    for i in list(range(1, n+1, 1)):
-        s = 0
-        for j in list(range(1, i, 1)):
-            s = s + L[i-1][j-1]*y[j-1]
-
-        y[i-1] = b[i-1] - s
-
-    return y
-
-# Resolve o sistema triangular superior.
+    return L, U  # Retorna as matrizes L e U resultantes da decomposição LU
+#================================================================
 
 
-def solveUpperTriangular(U, b):
-    n = len(b)
-    x = [0]*n
-    x[n-1] = b[n-1]/U[n-1][n-1]
-
-    for i in list(range(n-1, 0, -1)):
-        s = 0
-        for j in list(range(i+1, n+1, 1)):
-            s = s + U[i-1][j-1]*x[j-1]
-
-        x[i-1] = (b[i-1]-s)/(U[i-1][i-1])
-
-    return x
+#================================================================
+dimensao = int(input("Digite a dimensão da matriz quadrada A: ")) # Obtem a dimensão da matriz A quadrada  do usuário
+matrizA = [] # Inicializa a matriz L
+for i in range(dimensao):
+    linha = [] # Inicializa as linhas da matriz L
+    for j in range(dimensao):
+        valor = float(input(f"Digite o valor para a posição A[{i+1}],[{j+1}]: ")) # Obtem os valores dos elementos nas posições i,j
+        linha.append(valor) # Preenche as linhas com os valores digitados pelo usuário
+    matrizA.append(linha) # Preenche a matriz com as linhas
+#================================================================
 
 
-Tam = int(input('Iforme o tamanho da matriz: '))
-Ma = [[0 for i in range(Tam)] for j in range(Tam)]
-for i in range(Tam):
-    for j in range(Tam):
-        Ma[i][j] = float(input(f'Iforme o elemento A[{i+1}][{j+1}]: '))
+#================================================================
+L, U = decomp_lu(matrizA) # Realiza a decomposição retornando L e U
 
-print('Informe o vetor b: ')
-b = []
-for j in range(Tam):
-    b[j] = float(input(f'Iforme o elemento b[{j+1}]: '))
+print('================================')
+# Imprime a matriz A
+print("A: ")
+for linha in matrizA:
+    print(linha)
 
-
-print(f'Matriz A[{Tam}][{Tam}]: \n')
-for i in range(Tam):
-    for j in range(Tam):
-        print(Ma[i][j], end=' ')
-    print()
+print()
+print("=")
 print()
 
-# Obtendo os fatores L e U.
-A = LU(Ma)
-print(f'Matriz A[3][3]: \n')
-for i in range(len(A)):
-    for j in range(len(A)):
-        print(A[i][j], end=' ')
-    print()
+# Imprime a matriz L
+print("L: ")
+for linha in L:
+    print(linha)
+
+print()
+print("*")
 print()
 
-y = solveLowerTriangular(A, b)
-print(f'y:', end=' ')
-
-for j in range(len(y)):
-    print(y[j], end=' ')
+# Imprime a matriz U
+print("U: ")
+for linha in U:
+    print(linha)
 print()
-
-
-x = solveUpperTriangular(A, y)
-print(f'x:', end=' ')
-for j in range(len(x)):
-    print(x[j], end=' ')
-print()
+print('================================')
+#================================================================
